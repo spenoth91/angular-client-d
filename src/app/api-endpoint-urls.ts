@@ -1,7 +1,11 @@
 export class APIEndpointURLs {
-  private static readonly baseUrl = '/java-api/api';
+  private static readonly baseUrl = "/java-api/api";
 
   // User
-  public static readonly userUrl = APIEndpointURLs.baseUrl + '/user';
-  public static readonly allUser = APIEndpointURLs.userUrl + '/all';
+  public static readonly userUrl = APIEndpointURLs.baseUrl + "/user";
+  public static readonly allUser = APIEndpointURLs.userUrl + "/all";
+
+  // Booking
+  public static readonly bookingUrl = APIEndpointURLs.baseUrl + "/booking";
+  public static readonly allBooking = APIEndpointURLs.bookingUrl + "/all";
 }
