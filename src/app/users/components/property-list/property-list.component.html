@@ -1,0 +1,29 @@
+<p-table [value]="property" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>People Capacity</th>
+      <th>Room</th>
+      <th>Mp2</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Picture</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-property>
+    <tr>
+      <td>{{property.id}}</td>
+      <td>{{property.name}}</td>
+      <td>{{property.price}}</td>
+      <td>{{property.people_capacity}}</td>
+      <td>{{property.room}}</td>
+      <td>{{property.mp2}}</td>
+      <td>{{property.description}}</td>
+      <td>{{property.price}}</td>
+      <td>{{property.picture}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
