@@ -1,25 +1,33 @@
-<p-table [value]="booking" responsiveLayout="scroll">
+<p-table [value]="bookings" responsiveLayout="scroll" class="table">
   <ng-template pTemplate="header">
     <tr>
       <th>Id</th>
-      <th>Property</th>
-      <th>Property Price</th>
-      <th>User Name</th>
+      <th>Property (id)</th>
+      <th>Property price</th>
+      <th>User Name (id)</th>
       <th>User Email</th>
       <th>Start Date</th>
       <th>End Date</th>
-
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-booking>
+  <ng-template pTemplate="body" let-booking class="table">
     <tr>
-      <td>{{booking.id}}</td>
-      <td>{{booking.property.name + ' ' +  booking.property.id}}</td>
-      <td>{{booking.property.price + "$"}}</td>
-      <td>{{booking.user.firstName + ' ' +booking.user.lastName}}</td>
-      <td>{{booking.user.email}}</td>
-      <td>{{booking.start_date}}</td>
-      <td>{{booking.end_date}}</td>
+      <td>{{ booking.id }}</td>
+      <td>{{ booking.property.name + " (" + booking.property.id + ")" }}</td>
+      <td>{{ booking.property.price + "$" }}</td>
+      <td>
+        {{
+          booking.user.firstName +
+            " " +
+            booking.user.lastName +
+            " (" +
+            booking.user.id +
+            ")"
+        }}
+      </td>
+      <td>{{ booking.user.email }}</td>
+      <td>{{ booking.start_date }}</td>
+      <td>{{ booking.end_date }}</td>
     </tr>
   </ng-template>
 </p-table>
