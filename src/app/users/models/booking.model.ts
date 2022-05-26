@@ -1,7 +1,7 @@
 export class Booking {
   id: string;
-  property: string;
-  user: string;
+  property: any;
+  user: any;
   start_date: string;
   end_date: string;
 }
