@@ -7,4 +7,4 @@ export class APIEndpointURLs {
 }
 
 // Booking
-//Property
+
