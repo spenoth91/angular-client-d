@@ -5,6 +5,4 @@ export class APIEndpointURLs {
   public static readonly userUrl = APIEndpointURLs.baseUrl + '/user';
   public static readonly allUser = APIEndpointURLs.userUrl + '/all';
 }
-
-// Booking
-
+//test
