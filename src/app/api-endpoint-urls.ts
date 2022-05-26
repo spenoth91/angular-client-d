@@ -4,6 +4,7 @@ export class APIEndpointURLs {
   // User
   public static readonly userUrl = APIEndpointURLs.baseUrl + '/user';
   public static readonly allUser = APIEndpointURLs.userUrl + '/all';
+  public static readonly propertyUrl = APIEndpointURLs.baseUrl + '/property';
+  public static readonly allProperty = APIEndpointURLs.propertyUrl + '/all';
 }
-// Booking
-//Property
+
