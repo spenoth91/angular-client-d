@@ -1,4 +1,4 @@
-<p-table [value]="property" responsiveLayout="scroll">
+<p-table [value]="property" responsiveLayout="scroll" class="table">
   <ng-template pTemplate="header">
     <tr>
       <th>Id</th>
@@ -8,7 +8,6 @@
       <th>Room</th>
       <th>Mp2</th>
       <th>Description</th>
-      <th>Price</th>
       <th>Picture</th>
     </tr>
   </ng-template>
@@ -21,7 +20,6 @@
       <td>{{property.room}}</td>
       <td>{{property.mp2}}</td>
       <td>{{property.description}}</td>
-      <td>{{property.price}}</td>
       <td>{{property.picture}}</td>
     </tr>
   </ng-template>
