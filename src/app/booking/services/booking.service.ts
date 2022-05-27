@@ -14,3 +14,4 @@ export class BookingService {
     return this.http.get<Booking[]>(APIEndpointURLs.allBooking);
   }
 }
+

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {User} from '../../models/user.model';
-import {UserService} from '../../services/user.service';
+import {User} from '../../../users/models/user.model';
+import {UserService} from '../../../users/services/user.service';
 import {Subscription} from 'rxjs';
 import {Property} from "../../models/property.model";
 import {PropertyService} from "../../services/property.service";
