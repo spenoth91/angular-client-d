@@ -1,0 +1,80 @@
+<body>
+  <div class="bg-img">
+    <div class="content">
+      <header class="signup">Sing up</header>
+      <form
+        method="post"
+        class="form"
+        #userRegistrationForm="ngForm"
+        (ngSubmit)="getUser(userRegistrationForm.value)"
+      >
+        <div class="field">
+          <span class="fas fa-fname"></span>
+          <input
+            class="input"
+            type="text"
+            placeholder="First name"
+            required
+            #userFirstName="ngModel"
+            [(ngModel)]="user.firstName"
+            name="firstName"
+          />
+        </div>
+        <div class="field">
+          <span class="fas fa-lname"></span>
+          <input
+            class="input"
+            type="text"
+            placeholder="Last name"
+            required
+            #userLastName="ngModel"
+            [(ngModel)]="user.lastName"
+            name="lastName"
+          />
+        </div>
+        <div class="field">
+          <span class="fas fa-user"></span>
+          <input
+            class="input"
+            type="text"
+            placeholder="Email"
+            required
+            #userEmail="ngModel"
+            [(ngModel)]="user.email"
+            name="email"
+          />
+        </div>
+        <div class="field">
+          <span class="fas fa-ph"></span>
+          <input
+            class="input"
+            type="text"
+            placeholder="Phone"
+            required
+            #userEmail="ngModel"
+            [(ngModel)]="user.phone"
+            name="phone"
+          />
+        </div>
+        <div class="field">
+          <span class="fas fa-lock"></span>
+          <input
+            class="input input-pass"
+            type="password"
+            placeholder="Password"
+            required
+            #userPassword="ngModel"
+            [(ngModel)]="user.password"
+            name="password"
+          />
+
+          <span class="show">SHOW</span>
+        </div>
+
+        <div class="field">
+          <input class="input input-submit" type="submit" value="Register" />
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

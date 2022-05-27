@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Booking } from '../../../users/models/booking.model';
-import { BookingService } from '../../services/booking.service';
+import { Booking } from '../../models/booking.model';
+import { BookingService } from 'src/app/bookings/services/booking.service';
 import { Subscription } from 'rxjs';
 
 @Component({
