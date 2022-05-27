@@ -13,16 +13,16 @@
   <ng-template pTemplate="body" let-booking class="table">
     <tr>
       <td>{{ booking.id }}</td>
-      <td>{{ booking.property.name + ' (' + booking.property.id + ')' }}</td>
-      <td>{{ booking.property.price + '$' }}</td>
+      <td>{{ booking.property.name + " (" + booking.property.id + ")" }}</td>
+      <td>{{ booking.property.price + "$" }}</td>
       <td>
         {{
           booking.user.firstName +
-            ' ' +
+            " " +
             booking.user.lastName +
-            ' (' +
+            " (" +
             booking.user.id +
-            ')'
+            ")"
         }}
       </td>
       <td>{{ booking.user.email }}</td>

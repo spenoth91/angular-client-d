@@ -3,6 +3,7 @@ import {User} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import {Subscription} from 'rxjs';
 
+// @ts-ignore
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',

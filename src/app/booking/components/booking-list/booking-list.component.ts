@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Booking } from '../../../users/models/booking.model';
-import { BookingService } from '../../services/booking.service';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Booking } from "../../models/booking.model";
+import { BookingService } from "../../services/booking.service";
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-booking-list',
-  templateUrl: './booking-list.component.html',
-  styleUrls: ['./booking-list.component.css'],
+  selector: "app-booking-list",
+  templateUrl: "./booking-list.component.html",
+  styleUrls: ["./booking-list.component.css"],
 })
 export class BookingListComponent implements OnInit, OnDestroy {
   bookings: Booking[];
