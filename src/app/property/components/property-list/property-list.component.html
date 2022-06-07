@@ -1,27 +1,559 @@
-<p-table [value]="property" responsiveLayout="scroll" class="table">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>People Capacity</th>
-      <th>Room</th>
-      <th>Mp2</th>
-      <th>Description</th>
-      <th>Picture</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-property>
-    <tr>
-      <td>{{property.id}}</td>
-      <td>{{property.name}}</td>
-      <td>{{property.price}}</td>
-      <td>{{property.people_capacity}}</td>
-      <td>{{property.room}}</td>
-      <td>{{property.mp2}}</td>
-      <td>{{property.description}}</td>
-      <td>{{property.picture}}</td>
-    </tr>
-  </ng-template>
-</p-table>
+<body>
+  <div class="bg-img">
+    <div class="content">
+      <section class="add-property" *ngIf="addForm && !filter_form">
+        <div class="container1">
+          <div class="container2">
+            <form
+              class="form"
+              method="post"
+              #propertyInputForm="ngForm"
+              (ngSubmit)="onSubmitAdd(propertyInputForm)"
+            >
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  #name="ngModel"
+                  ngModel
+                />
+              </div>
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  #address="ngModel"
+                  ngModel
+                />
+              </div>
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="price"
+                  placeholder="Price"
+                  #price="ngModel"
+                  ngModel
+                />
+              </div>
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="capacity"
+                  placeholder="Capacity"
+                  #capacity="ngModel"
+                  ngModel
+                />
+              </div>
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="room"
+                  placeholder="Room"
+                  #room="ngModel"
+                  ngModel
+                />
+              </div>
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="mp2"
+                  placeholder="mp2"
+                  #mp2="ngModel"
+                  ngModel
+                />
+              </div>
+              <div class="field">
+                <textarea
+                  class="inputt"
+                  rows="2"
+                  cols="28"
+                  name="description"
+                  placeholder="More details"
+                  #description="ngModel"
+                  ngModel
+                >
+                </textarea>
+                <div class="div-img">
+                  <label class="field pic-msg" for="img">Select image:</label>
+                  <input
+                    class="field pic-choose"
+                    type="file"
+                    id="img"
+                    name="picture"
+                    accept="image/*"
+                    #picture="ngModel"
+                    ngModel
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <input
+                  class="send"
+                  type="submit"
+                  name="add"
+                  value="Add property"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
 
+      <section class="filter" *ngIf="filter_form && !addForm">
+        <div class="container1">
+          <div class="container2">
+            <legend class="legend">Filter by</legend>
+            <form
+              class="form"
+              method="post"
+              #filterForm="ngForm"
+              (ngSubmit)="onSubmitFilter(filterForm)"
+            >
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  #name="ngModel"
+                  ngModel
+                />
+              </div>
+
+              <div class="price-range">
+                <div class="field">
+                  <input
+                    class="input min-price prices"
+                    type="text"
+                    name="minPrice"
+                    placeholder="Min price"
+                    #min_price="ngModel"
+                    ngModel
+                  />
+                </div>
+                <div class="field">
+                  <input
+                    class="input max-price prices"
+                    type="text"
+                    name="maxPrice"
+                    placeholder="Max price"
+                    #max_price="ngModel"
+                    ngModel
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <input
+                  class="input"
+                  type="text"
+                  name="rooms"
+                  placeholder="Rooms"
+                  #rooms="ngModel"
+                  ngModel
+                />
+              </div>
+              <div class="area-range">
+                <div class="field">
+                  <input
+                    class="input min-area areas"
+                    type="text"
+                    name="minArea"
+                    placeholder="Min area"
+                    #min_price="ngModel"
+                    ngModel
+                  />
+                </div>
+                <div class="field">
+                  <input
+                    class="input max-area areas"
+                    type="text"
+                    name="maxArea"
+                    placeholder="Max area"
+                    #max_area="ngModel"
+                    ngModel
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <input
+                  class="send"
+                  type="submit"
+                  name="search"
+                  value="Search"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <div class="div-btns" *ngIf="!addForm && !filter_form">
+        <button class="btn" (click)="displayAddForm()">Add property</button>
+        <button class="btn" (click)="displayFilterForm()">Filter by</button>
+        <button class="btn" (click)="sortProp()">{{ sort }}</button>
+        <button class="btn" (click)="cancelOptions()">Cancel options</button>
+      </div>
+      <p-table
+        [value]="property"
+        responsiveLayout="scroll"
+        class="table"
+        *ngIf="!addForm && !filter_form"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Address</th>
+            <th>People Capacity</th>
+            <th>Room</th>
+            <th>Mp2</th>
+            <th>Description</th>
+            <th></th>
+            <th>Actions</th>
+            <th></th>
+            <!-- <th>Picture</th> -->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-property>
+          <tr>
+            <td>{{ property.id }}</td>
+            <td>{{ property.name }}</td>
+            <td>{{ property.price }}$</td>
+            <td>{{ property.address }}</td>
+            <td>{{ property.people_capacity }}</td>
+            <td>{{ property.room }}</td>
+            <td>{{ property.mp2 }}</td>
+            <td>{{ property.description }}</td>
+            <td>
+              <a href="/bookings" class="btn-rent" (clcik)="rentProp()">Rent</a>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn-edit"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                (click)="edit(property)"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn-delete"
+                (click)="deleteProperty(property)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Property</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            method="put"
+            #propertyUpdateForm="ngForm"
+            (ngSubmit)="onSubmitUpdateProperty(propertyUpdateForm)"
+          >
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="id"
+                placeholder="Id"
+                #id="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.id"
+              />
+            </div>
+
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="name"
+                placeholder="Name"
+                #name="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.name"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="address"
+                placeholder="Address"
+                #address="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.address"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="price"
+                placeholder="Price"
+                #price="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.price"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="people_capacity"
+                placeholder="Capacity"
+                #capacity="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.people_capacity"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="room"
+                placeholder="Rooms"
+                #room="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.room"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="mp2"
+                placeholder="mp2"
+                #mp2="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.mp2"
+              />
+            </div>
+            <div class="field">
+              <textarea
+                class="inputt"
+                rows="2"
+                cols="28"
+                name="description"
+                placeholder="More details"
+                #description="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.description"
+              >
+              </textarea>
+              <div class="div-img">
+                <label class="field pic-msg" for="img">Select image:</label>
+                <input
+                  class="field pic-choose"
+                  type="file"
+                  name="picture"
+                  accept="image/*"
+                  #picture="ngModel"
+                  ngModel
+                  [(ngModel)]="propertyToUpdate.picture"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <input
+                class="update"
+                type="submit"
+                name="add"
+                value="Update Property"
+              />
+            </div>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Property</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            method="put"
+            #propertyUpdateForm="ngForm"
+            (ngSubmit)="onSubmitUpdateProperty(propertyUpdateForm)"
+          >
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="id"
+                placeholder="Id"
+                #id="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.id"
+              />
+            </div>
+
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="name"
+                placeholder="Name"
+                #name="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.name"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="address"
+                placeholder="Address"
+                #address="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.address"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="price"
+                placeholder="Price"
+                #price="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.price"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="people_capacity"
+                placeholder="Capacity"
+                #capacity="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.people_capacity"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="room"
+                placeholder="Rooms"
+                #room="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.room"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                name="mp2"
+                placeholder="mp2"
+                #mp2="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.mp2"
+              />
+            </div>
+            <div class="field">
+              <textarea
+                class="inputt"
+                rows="2"
+                cols="28"
+                name="description"
+                placeholder="More details"
+                #description="ngModel"
+                ngModel
+                [(ngModel)]="propertyToUpdate.description"
+              >
+              </textarea>
+              <div class="div-img">
+                <label class="field pic-msg" for="img">Select image:</label>
+                <input
+                  class="field pic-choose"
+                  type="file"
+                  name="picture"
+                  accept="image/*"
+                  #picture="ngModel"
+                  ngModel
+                  [(ngModel)]="propertyToUpdate.picture"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <input
+                class="update"
+                type="submit"
+                name="add"
+                value="Update Property"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

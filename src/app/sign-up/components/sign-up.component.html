@@ -2,11 +2,21 @@
   <div class="bg-img">
     <div class="content">
       <header class="signup">Sing up</header>
+
+      <div>
+        <p class="result result-true" *ngIf="isSucceeded">
+          {{ msg }}
+        </p>
+        <p class="result result-false" *ngIf="!isSucceeded">
+          {{ msg }}
+        </p>
+      </div>
+
       <form
         method="post"
         class="form"
         #userRegistrationForm="ngForm"
-        (ngSubmit)="getUser(userRegistrationForm.value)"
+        (ngSubmit)="onSubmit(userRegistrationForm)"
       >
         <div class="field">
           <span class="fas fa-fname"></span>
@@ -14,10 +24,10 @@
             class="input"
             type="text"
             placeholder="First name"
+            name="firstName"
             required
             #userFirstName="ngModel"
-            [(ngModel)]="user.firstName"
-            name="firstName"
+            ngModel
           />
         </div>
         <div class="field">
@@ -25,11 +35,11 @@
           <input
             class="input"
             type="text"
+            name="lastName"
             placeholder="Last name"
             required
             #userLastName="ngModel"
-            [(ngModel)]="user.lastName"
-            name="lastName"
+            ngModel
           />
         </div>
         <div class="field">
@@ -37,11 +47,12 @@
           <input
             class="input"
             type="text"
+            name="email"
             placeholder="Email"
             required
+            email
             #userEmail="ngModel"
-            [(ngModel)]="user.email"
-            name="email"
+            ngModel
           />
         </div>
         <div class="field">
@@ -49,11 +60,11 @@
           <input
             class="input"
             type="text"
+            name="phone"
             placeholder="Phone"
             required
             #userEmail="ngModel"
-            [(ngModel)]="user.phone"
-            name="phone"
+            ngModel
           />
         </div>
         <div class="field">
@@ -61,18 +72,21 @@
           <input
             class="input input-pass"
             type="password"
+            name="password"
             placeholder="Password"
             required
+            minlength="6"
             #userPassword="ngModel"
-            [(ngModel)]="user.password"
-            name="password"
+            ngModel
           />
 
           <span class="show">SHOW</span>
         </div>
 
         <div class="field">
-          <input class="input input-submit" type="submit" value="Register" />
+          <button class="input input-submit" type="submit" value="Register">
+            Register
+          </button>
         </div>
       </form>
     </div>

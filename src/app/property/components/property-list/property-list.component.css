@@ -1,3 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  position: relative;
+
+  font-weight: bold;
+}
+
+.bg-img {
+  background-image: url(images/propimg2.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+.bg-img:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  position: absolute;
+  margin-top: 130px;
+  z-index: 2;
+  border-radius: 10px;
+
+  left: 0;
+  right: 0;
+
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0px 4px 30px 1px rgba(0, 0, 0, 1);
+}
+
+.container1 {
+  border: 2px solid #404040;
+  width: fit-content;
+  margin: 20px 20px;
+  border-radius: 20%;
+  right: 0;
+  left: 0;
+  background-color: #40404019;
+  box-shadow: -1px 5px 2 0px 1px;
+  border-radius: 2%;
+}
+
+.container2 {
+  border: 2px solid #404040;
+  margin: 7px 7px;
+  box-shadow: -1px 5px 20px 1px;
+}
+.field {
+  margin: 15px 32px;
+  left: 50%;
+  right: 50%;
+  width: 100%;
+}
+
+.input {
+  height: 27px;
+  margin-left: 35px;
+  border: none;
+  box-shadow: -1px 5px 20px 1px;
+}
+
+.inputt {
+  box-shadow: -1px 5px 20px 1px;
+}
+
+.send {
+  height: 25px;
+  width: 115px;
+  border: none;
+  margin-left: 160px;
+  box-shadow: -1px 5px 20px 1px;
+}
+
+.send:hover {
+  font-weight: bold;
+  box-shadow: -1px 5px 15px 3px;
+}
+
+.send:active {
+  border: 1px solid #404040;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.div-img {
+  width: 250px;
+  margin-top: -13px;
+}
+
+.pic-choose {
+  margin-top: -35px;
+  font-size: 14px;
+}
+
 .table {
   text-align: center;
+}
+
+.price-range,
+.area-range {
+  display: flex;
+}
+
+.prices,
+.areas {
+  width: 100px;
+}
+
+.min-price,
+.min-area {
+  box-shadow: -2px 5px 20px 1px;
+}
+
+.max-price,
+.max-area {
+  margin-left: -62px;
+  box-shadow: 4px 5px 20px 0;
+}
+
+.min-area {
+  width: 100px;
+}
+
+.legend {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+.div-btns {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.btn:first-child {
+  margin-left: 25px;
+}
+
+.btn {
+  border-radius: 20px;
+  border: 2px solid #555;
+  margin-top: 20px;
+  margin-left: 10px;
+
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: rgba(85, 85, 85, 1);
+}
+
+.btn:active {
+  border: 2px solid rgba(65, 105, 225, 0.274);
+}
+
+.btn-rent {
+  text-decoration: none;
+}
+
+.btn-rent:active {
+  color: rgb(46, 46, 245);
+}
+
+.btn-edit {
+  margin-right: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: transparent;
+  color: rgba(0, 128, 0, 0.7);
+  font-weight: bold;
+}
+
+.btn-edit:hover {
+  color: rgba(0, 128, 0, 0.9);
+  text-decoration: none;
+}
+
+.btn-edit:active {
+  color: rgb(0, 223, 0);
+  text-decoration: none;
+}
+
+.btn-delete {
+  margin-top: -5px;
+  color: rgba(255, 0, 0, 0.7);
+  border-radius: 10px;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+
+  background-color: transparent;
+}
+
+.btn-delete:hover {
+  color: rgba(255, 0, 0, 1);
+}
+
+.btn-delete:active {
+  color: rgba(255, 0, 0, 1);
+}
+
+.modal-dialog {
+  margin-top: 75px;
+  width: 400px;
+}
+
+.modal-content {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(255, 255, 255, 0.93);
+}
+
+.modal-header {
+  background-color: rgba(119, 119, 119, 0.342);
+  height: 50px;
 }

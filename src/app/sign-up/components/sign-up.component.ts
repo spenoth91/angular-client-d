@@ -1,7 +1,7 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { User } from 'src/app/users/models/user.model';
+import { Router } from '@angular/router';
+
 import { SignUpService } from '../sign-up.service';
 
 @Component({
@@ -10,36 +10,32 @@ import { SignUpService } from '../sign-up.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  user: any;
-  private subscription: Subscription;
-  // validInputs: boolean = false;
+  isSucceeded: boolean = false;
+  msg: string;
 
-  constructor(private signUpService: SignUpService) {
-    this.signUpService.users().subscribe((data) => (this.user = data));
-  }
+  constructor(private signUpService: SignUpService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.resetForm();
-  }
+  ngOnInit() {}
 
-  resetForm(form?: NgForm) {
-    if (form != null) form.reset();
-    this.user = {
-      id: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      password: '',
-    };
-  }
+  onSubmit(form: NgForm) {
+    const firstName = form.value.firstName;
+    const lastName = form.value.lastName;
+    const email = form.value.email;
+    const phone = form.value.phone;
+    const password = form.value.password;
 
-  getUser(data: User) {
-    console.warn(data);
+    this.signUpService
+      .saveUser(firstName, lastName, email, phone, password)
+      .subscribe(() => {
+        if (this.isSucceeded) {
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 4000);
 
-    this.signUpService.saveUser(data).subscribe((user) => {
-      console.warn(user);
-      return user;
-    });
+          this.msg = 'Registration successful';
+        } else this.msg = 'One or more fields are not valid!';
+      });
+
+    form.reset();
   }
 }

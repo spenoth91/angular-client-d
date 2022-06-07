@@ -1,0 +1,11 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.div-logout {
+  position: absolute;
+  width: fit-content;
+  right: 0;
+  margin-right: 50px;
+}

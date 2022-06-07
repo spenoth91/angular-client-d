@@ -13,7 +13,19 @@ export class SignUpService {
     return this.http.get(APIEndpointURLs.allUser);
   }
 
-  saveUser(data: User) {
-    return this.http.post(APIEndpointURLs.register, data);
+  saveUser(
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    password: string
+  ) {
+    return this.http.post<User>(APIEndpointURLs.register, {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      password: password,
+    });
   }
 }

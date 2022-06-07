@@ -1,0 +1,59 @@
+<body>
+  <div class="bg-img">
+    <div class="content">
+      <header class="login">Login</header>
+
+      <div>
+        <p class="result">
+          {{ error }}
+        </p>
+      </div>
+
+      <form method="post" #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)">
+        <div class="field">
+          <span class="fas fa-user"></span>
+
+          <input
+            class="input"
+            type="text"
+            name="email"
+            placeholder="Email"
+            #loginEmail="ngModel"
+            ngModel
+            required
+            email
+          />
+        </div>
+        <div class="field">
+          <span class="fas fa-lock"></span>
+
+          <input
+            class="input input-pass"
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            #loginPass="ngModel"
+            ngModel
+          />
+
+          <span class="show">SHOW</span>
+        </div>
+
+        <div class="field">
+          <input
+            class="input input-submit"
+            type="submit"
+            name="login"
+            value="Login"
+          />
+        </div>
+        <p>
+          Don't have an account?<a class="signup" routerLink="/sign-up">
+            SIGN UP here!</a
+          >
+        </p>
+      </form>
+    </div>
+  </div>
+</body>

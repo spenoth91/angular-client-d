@@ -1,6 +1,7 @@
 <p-table [value]="users" responsiveLayout="scroll" class="table">
   <ng-template pTemplate="header">
     <tr>
+      <th>Id</th>
       <th>FirstName</th>
       <th>LastName</th>
       <th>Email</th>
@@ -9,6 +10,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-user class="table">
     <tr>
+      <td>{{ user.id }}</td>
       <td>{{ user.firstName }}</td>
       <td>{{ user.lastName }}</td>
       <td>{{ user.email }}</td>
