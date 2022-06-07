@@ -170,7 +170,7 @@ body {
 }
 
 .btn:hover {
-  background-color: rgba(85, 85, 85, 1);
+  background-color: rgba(85, 85, 85, 0.3);
 }
 
 .btn:active {
@@ -178,11 +178,23 @@ body {
 }
 
 .btn-rent {
+  margin-right: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: transparent;
+  color: rgba(0, 0, 255, 0.8);
+  font-weight: bold;
+}
+
+.btn-rent:hover {
+  color: rgba(0, 0, 255, 1);
   text-decoration: none;
 }
 
 .btn-rent:active {
-  color: rgb(46, 46, 245);
+  color: rgb(56, 146, 219);
+
+  text-decoration: none;
 }
 
 .btn-edit {

@@ -19,7 +19,7 @@ export class PropertyListComponent implements OnInit, OnDestroy {
 
   sort: string = "Sort by price ⬆";
 
-  propertyToUpdate: Property = {
+  propertyContainer: Property = {
     id: "",
     name: "",
     price: "",
@@ -154,6 +154,10 @@ export class PropertyListComponent implements OnInit, OnDestroy {
     );
   }
 
+  getProperty(property: Property) {
+    this.propertyContainer = property;
+  }
+
   onSubmitUpdateProperty(propertyUpdateForm: NgForm) {
     this.propertyService
       .updateProperty(
@@ -172,8 +176,8 @@ export class PropertyListComponent implements OnInit, OnDestroy {
       });
   }
 
-  edit(property: Property) {
-    this.propertyToUpdate = property;
+  onSubmitRent(rentForm: NgForm) {
+    // this.propertyService.rentProperty(this.propertyContainer,)
   }
 
   ngOnDestroy(): void {

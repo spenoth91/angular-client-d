@@ -233,7 +233,15 @@
             <td>{{ property.mp2 }}</td>
             <td>{{ property.description }}</td>
             <td>
-              <a href="/bookings" class="btn-rent" (clcik)="rentProp()">Rent</a>
+              <button
+                type="button"
+                class="btn-rent"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal1"
+                (click)="getProperty(property)"
+              >
+                Rent
+              </button>
             </td>
             <td>
               <button
@@ -241,7 +249,7 @@
                 class="btn-edit"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                (click)="edit(property)"
+                (click)="getProperty(property)"
               >
                 Edit
               </button>
@@ -258,6 +266,8 @@
       </p-table>
     </div>
   </div>
+
+  <!-- EDIT MODAL -->
   <div
     class="modal fade"
     id="exampleModal"
@@ -290,7 +300,7 @@
                 placeholder="Id"
                 #id="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.id"
+                [(ngModel)]="propertyContainer.id"
               />
             </div>
 
@@ -302,7 +312,7 @@
                 placeholder="Name"
                 #name="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.name"
+                [(ngModel)]="propertyContainer.name"
               />
             </div>
             <div class="field">
@@ -313,7 +323,7 @@
                 placeholder="Address"
                 #address="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.address"
+                [(ngModel)]="propertyContainer.address"
               />
             </div>
             <div class="field">
@@ -324,7 +334,7 @@
                 placeholder="Price"
                 #price="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.price"
+                [(ngModel)]="propertyContainer.price"
               />
             </div>
             <div class="field">
@@ -335,7 +345,7 @@
                 placeholder="Capacity"
                 #capacity="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.people_capacity"
+                [(ngModel)]="propertyContainer.people_capacity"
               />
             </div>
             <div class="field">
@@ -346,7 +356,7 @@
                 placeholder="Rooms"
                 #room="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.room"
+                [(ngModel)]="propertyContainer.room"
               />
             </div>
             <div class="field">
@@ -357,7 +367,7 @@
                 placeholder="mp2"
                 #mp2="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.mp2"
+                [(ngModel)]="propertyContainer.mp2"
               />
             </div>
             <div class="field">
@@ -369,7 +379,7 @@
                 placeholder="More details"
                 #description="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.description"
+                [(ngModel)]="propertyContainer.description"
               >
               </textarea>
               <div class="div-img">
@@ -381,7 +391,7 @@
                   accept="image/*"
                   #picture="ngModel"
                   ngModel
-                  [(ngModel)]="propertyToUpdate.picture"
+                  [(ngModel)]="propertyContainer.picture"
                 />
               </div>
             </div>
@@ -395,21 +405,14 @@
             </div>
           </form>
         </div>
-        <!-- <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-        </div> -->
       </div>
     </div>
   </div>
+
+  <!-- RENT MODAL -->
   <div
     class="modal fade"
-    id="exampleModal"
+    id="exampleModal1"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
@@ -427,131 +430,39 @@
         </div>
         <div class="modal-body">
           <form
-            method="put"
-            #propertyUpdateForm="ngForm"
-            (ngSubmit)="onSubmitUpdateProperty(propertyUpdateForm)"
+            method="post"
+            #rentForm="ngForm"
+            (ngSubmit)="onSubmitRent(rentForm)"
           >
             <div class="field">
               <input
                 class="input"
                 type="text"
-                name="id"
-                placeholder="Id"
-                #id="ngModel"
+                name="start_date"
+                placeholder="Start Date"
+                #start_date="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.id"
-              />
-            </div>
-
-            <div class="field">
-              <input
-                class="input"
-                type="text"
-                name="name"
-                placeholder="Name"
-                #name="ngModel"
-                ngModel
-                [(ngModel)]="propertyToUpdate.name"
               />
             </div>
             <div class="field">
               <input
                 class="input"
                 type="text"
-                name="address"
-                placeholder="Address"
-                #address="ngModel"
+                name="end_date"
+                placeholder="End Date"
+                #end_date="ngModel"
                 ngModel
-                [(ngModel)]="propertyToUpdate.address"
               />
-            </div>
-            <div class="field">
-              <input
-                class="input"
-                type="text"
-                name="price"
-                placeholder="Price"
-                #price="ngModel"
-                ngModel
-                [(ngModel)]="propertyToUpdate.price"
-              />
-            </div>
-            <div class="field">
-              <input
-                class="input"
-                type="text"
-                name="people_capacity"
-                placeholder="Capacity"
-                #capacity="ngModel"
-                ngModel
-                [(ngModel)]="propertyToUpdate.people_capacity"
-              />
-            </div>
-            <div class="field">
-              <input
-                class="input"
-                type="text"
-                name="room"
-                placeholder="Rooms"
-                #room="ngModel"
-                ngModel
-                [(ngModel)]="propertyToUpdate.room"
-              />
-            </div>
-            <div class="field">
-              <input
-                class="input"
-                type="text"
-                name="mp2"
-                placeholder="mp2"
-                #mp2="ngModel"
-                ngModel
-                [(ngModel)]="propertyToUpdate.mp2"
-              />
-            </div>
-            <div class="field">
-              <textarea
-                class="inputt"
-                rows="2"
-                cols="28"
-                name="description"
-                placeholder="More details"
-                #description="ngModel"
-                ngModel
-                [(ngModel)]="propertyToUpdate.description"
-              >
-              </textarea>
-              <div class="div-img">
-                <label class="field pic-msg" for="img">Select image:</label>
-                <input
-                  class="field pic-choose"
-                  type="file"
-                  name="picture"
-                  accept="image/*"
-                  #picture="ngModel"
-                  ngModel
-                  [(ngModel)]="propertyToUpdate.picture"
-                />
-              </div>
             </div>
             <div class="field">
               <input
                 class="update"
                 type="submit"
                 name="add"
-                value="Update Property"
+                value="Rent property"
               />
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
         </div>
       </div>
     </div>

@@ -19,6 +19,8 @@ export class APIEndpointURLs {
   public static readonly deleteProperty =APIEndpointURLs.propertyUrl + "/delete?id=";
   // prettier-ignore
   public static readonly updateProperty =APIEndpointURLs.propertyUrl + "/update";
+  // prettier-ignore
+  public static readonly rentProperty =APIEndpointURLs.propertyUrl + "/rent";
 
   // Booking
   public static readonly bookingUrl = APIEndpointURLs.baseUrl + "/booking";

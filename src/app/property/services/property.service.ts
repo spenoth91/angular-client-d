@@ -3,12 +3,16 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Property } from "../models/property.model";
 import { APIEndpointURLs } from "../../api-endpoint-urls";
+import { User } from "src/app/users/models/user.model";
+import { Booking } from "src/app/bookings/models/booking.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class PropertyService {
   property: Property;
+  user: User;
+  booking: Booking;
 
   constructor(private http: HttpClient) {}
 
@@ -101,6 +105,20 @@ export class PropertyService {
       mp2: mp2,
       description: description,
       picture: picture,
+    });
+  }
+
+  public rentProperty(
+    property: Property,
+    user: User,
+    start_date: string,
+    end_date: string
+  ) {
+    return this.http.post(APIEndpointURLs.rentProperty, {
+      property: property,
+      user: user,
+      start_date: start_date,
+      end_date: end_date,
     });
   }
 }
